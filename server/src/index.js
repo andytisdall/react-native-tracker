@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const bodyParser = require('body-parser');
 const app = express();
 const trackRoutes = require('./routes/trackRoutes');
+const mongoKey = require('./mongo-key')
 
 app.use(bodyParser.json());
 app.use(authRoutes);
@@ -16,7 +17,7 @@ app.get('/', requireAuth, (req, res) => {
     res.send(`Your email: ${req.user.email}`);
 });
 
-const mongoUri = 'mongodb+srv://andy:blowback420@cluster0.ucdq4.mongodb.net/<dbname>?retryWrites=true&w=majority';
+const mongoUri = ;
 
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
