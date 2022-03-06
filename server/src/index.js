@@ -7,29 +7,29 @@ const authRoutes = require('./routes/authRoutes');
 const bodyParser = require('body-parser');
 const app = express();
 const trackRoutes = require('./routes/trackRoutes');
-const mongoKey = require('./mongo-key')
+const mongoKey = require('./mongo-key');
 
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
 app.get('/', requireAuth, (req, res) => {
-    res.send(`Your email: ${req.user.email}`);
+  res.send(`Your email: ${req.user.email}`);
 });
 
-const mongoUri = ;
+const mongoUri = mongoKey;
 
 mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useCreateIndex: true
+  useNewUrlParser: true,
+  useCreateIndex: true,
 });
 mongoose.connection.on('connected', () => {
-    console.log('Connected to mongo instance');
+  console.log('Connected to mongo instance');
 });
 mongoose.connection.on('error', (err) => {
-    console.error('Error connecting to mongo');
+  console.error('Error connecting to mongo');
 });
 
 app.listen(3000, () => {
-    console.log('Listening on port 3000');
+  console.log('Listening on port 3000');
 });
